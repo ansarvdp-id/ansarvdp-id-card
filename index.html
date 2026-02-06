@@ -4,63 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>নোটিস বোর্ড - আলহাজ্ব আমজাদ হোসেন ডিগ্ৰি কলেজ</title>
-    <!-- বাংলা ফন্ট যুক্ত করা হয়েছে -->
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #006a4e; /* গাঢ় সবুজ */
-            --secondary-color: #f4f4f4;
-            --text-color: #333;
-            --border-color: #ddd;
+            --primary-color: #006a4e;
+            --text-color: #000; /* প্রিন্টের জন্য কালচে কালো */
         }
 
         body {
             font-family: 'Hind Siliguri', sans-serif;
-            background-color: var(--secondary-color);
+            background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
             color: var(--text-color);
         }
 
         .container {
-            max-width: 800px;
+            width: 100%;
+            max-width: 800px; /* স্ক্রিনে দেখার জন্য */
             margin: 0 auto;
             background: white;
-            padding: 40px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 50px;
+            box-sizing: border-box; /* প্যাডিং যেন উইডথের বাইরে না যায় */
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
             border-radius: 8px;
             border-top: 5px solid var(--primary-color);
         }
 
-        /* হেডার ডিজাইন */
+        /* হেডার */
         .header {
             text-align: center;
             border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 20px;
+            padding-bottom: 15px;
             margin-bottom: 30px;
         }
 
         .college-name {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
             color: var(--primary-color);
             margin: 0;
+            line-height: 1.3;
         }
 
         .college-address {
             font-size: 16px;
-            color: #666;
             margin: 5px 0 0 0;
         }
 
-        /* নোটিস বডি ডিজাইন */
+        /* বডি */
         .notice-title {
             text-align: center;
-            font-size: 22px;
+            font-size: 20px;
             text-decoration: underline;
-            margin-bottom: 30px;
-            font-weight: 600;
+            margin-bottom: 25px;
+            font-weight: 700;
         }
 
         .notice-content {
@@ -71,19 +70,14 @@
 
         .highlight {
             font-weight: bold;
-            color: #d32f2f;
         }
 
-        /* ফুটার এবং স্বাক্ষর */
+        /* ফুটার */
         .footer-section {
-            margin-top: 60px;
+            margin-top: 80px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .date-box {
-            font-weight: 600;
+            align-items: flex-start;
         }
 
         .signature-box {
@@ -92,85 +86,82 @@
         }
 
         .signature-line {
-            border-top: 1px dashed #333;
+            border-top: 1px solid #000;
             margin-bottom: 5px;
         }
 
-        .principal-name {
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        /* বাটন ডিজাইন (প্রিন্ট করার সময় লুকানো থাকবে) */
+        /* বাটন */
         .action-btn {
             display: block;
-            width: 100%;
-            max-width: 200px;
-            margin: 30px auto 0;
+            width: 200px;
+            margin: 30px auto;
             padding: 12px;
             background-color: var(--primary-color);
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 16px;
             cursor: pointer;
-            text-align: center;
-            transition: background 0.3s;
+            font-size: 16px;
         }
 
-        .action-btn:hover {
-            background-color: #004d38;
-        }
-
-        /* প্রিন্ট মিডিয়া কোয়েরি */
+        /* =========================================
+           গুরুত্বপূর্ণ: প্রিন্ট ফিক্সিং কোড (A4 Size)
+           ========================================= */
         @media print {
+            @page {
+                size: A4; /* পেজ সাইজ A4 */
+                margin: 1.5cm; /* চারপাশের মার্জিন ১.৫ সেমি */
+            }
+
             body {
                 background-color: white;
+                margin: 0;
                 padding: 0;
+                -webkit-print-color-adjust: exact; /* কালার ঠিক রাখার জন্য */
             }
-            .container {
-                box-shadow: none;
-                border: none;
-                width: 100%;
-                max-width: 100%;
-            }
-            .action-btn {
-                display: none;
-            }
-        }
 
-        /* মোবাইল রেসপনসিভ */
-        @media (max-width: 600px) {
             .container {
-                padding: 20px;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important; /* কন্টেইনারের প্যাডিং কমিয়ে দেওয়া */
+                margin: 0 !important;
             }
+
+            .action-btn {
+                display: none; /* প্রিন্টের সময় বাটন হাইড */
+            }
+
+            /* ফন্ট সাইজ একটু এডজাস্ট করা যাতে পেজে ধরে */
             .college-name {
-                font-size: 22px;
+                font-size: 24px;
+                color: black !important; /* প্রিন্টে কালো কালি ভালো আসে */
             }
+            
+            .header {
+                border-bottom: 2px solid black !important;
+            }
+
+            .notice-content {
+                font-size: 16px; /* প্রিন্টে ১৮ এর চেয়ে ১৬ দেখতে ভালো লাগে */
+            }
+            
             .footer-section {
-                flex-direction: column;
-                gap: 40px;
-                align-items: flex-start;
-            }
-            .signature-box {
-                align-self: flex-start;
-                text-align: left;
+                margin-top: 60px; /* পেজ ব্রেক এড়াতে মার্জিন কমানো */
+                page-break-inside: avoid;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container" id="noticeArea">
-        <!-- হেডার অংশ -->
+    <div class="container">
         <header class="header">
-            <!-- লোগো বসাতে চাইলে নিচে img ট্যাগ ব্যবহার করতে পারেন -->
-            <!-- <img src="logo.png" alt="College Logo" width="80"> -->
             <h1 class="college-name">আলহাজ্ব আমজাদ হোসেন ডিগ্ৰি কলেজ</h1>
             <p class="college-address">পাংশা, রাজবাড়ী</p>
         </header>
 
-        <!-- মূল নোটিস -->
         <main>
             <div class="notice-title">জরুরী বিজ্ঞপ্তি</div>
 
@@ -184,7 +175,6 @@
             </div>
         </main>
 
-        <!-- স্বাক্ষর এবং তারিখ -->
         <footer class="footer-section">
             <div class="date-box">
                 তারিখ: ২৭.০১.২০২৬ খ্রিঃ
@@ -192,15 +182,14 @@
 
             <div class="signature-box">
                 <div class="signature-line"></div>
-                <div class="principal-name">মোঃ মনিরুজ্জামান</div>
+                <div class="principal-name"><strong>মোঃ মনিরুজ্জামান</strong></div>
                 <div>প্রিন্সিপাল</div>
-                <div style="font-size: 14px; margin-top:2px;">আলহাজ্ব আমজাদ হোসেন ডিগ্ৰি কলেজ</div>
+                <div style="font-size: 13px;">আলহাজ্ব আমজাদ হোসেন ডিগ্ৰি কলেজ</div>
             </div>
         </footer>
     </div>
 
-    <!-- প্রিন্ট বাটন -->
-    <button class="action-btn" onclick="window.print()">নোটিস ডাউনলোড/প্রিন্ট করুন</button>
+    <button class="action-btn" onclick="window.print()">🖨️ প্রিন্ট / PDF সেভ করুন</button>
 
 </body>
 </html>
